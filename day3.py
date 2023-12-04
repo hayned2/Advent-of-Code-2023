@@ -35,7 +35,7 @@ for x in range(height):
 
                 # Get the bounding box surrounding our tracked number and iterate over it
                 column_range = range(max(current_number_start - 1, 0), y + 1)
-                row_range = (range(max(x - 1, 0), min(x + 2, height)))
+                row_range = range(max(x - 1, 0), min(x + 2, height))
                 is_part_number = False
                 for y2 in column_range:
                     if is_part_number:
