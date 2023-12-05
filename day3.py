@@ -14,6 +14,7 @@ gears = {}
 
 # Read the input so we can calculate the size of the grid
 lines = input.readlines()
+input.close()
 width = len(lines[0]) - 1
 height = len(lines)
 

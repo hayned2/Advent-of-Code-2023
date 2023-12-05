@@ -43,5 +43,6 @@ for line in input:
             card_counts[next_card] = 0
         card_counts[next_card] += card_counts[card_number]
 
+input.close()
 print("The total score of all the winning cards together is:", total_score)
 print("The total number of scratch cards collected is:", sum(card_counts.values()))

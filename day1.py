@@ -34,5 +34,6 @@ for line in input:
             value += character
     total2 += int(value[0] + value[-1])
 
+input.close()
 print("Part 1 Calibration Value:", total)
 print("Part 2 Calibration Value:", total2)

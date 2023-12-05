@@ -60,5 +60,6 @@ for line in input:
     # Calculate the "power" of the game and add it to the sum of powers for all games
     power_sum += max_seen_reds * max_seen_greens * max_seen_blues
 
+input.close()
 print("The sum of IDs of all possible games is", possible_games)
 print("The sum of the powers for each game is", power_sum)
