@@ -12,10 +12,7 @@ for line in input:
         seeds = [int(val) for val in line.strip().split()[1:]]
     elif ":" in line:
         maps.append([])
-    elif line.isspace():
-        if len(maps) > 0:
-            maps[-1].sort(key = lambda x: x[1])
-    else:
+    elif not line.isspace():
         values = [int(val) for val in line.strip().split()]
         maps[-1].append(values)
 input.close()
