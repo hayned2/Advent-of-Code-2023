@@ -1,5 +1,6 @@
 import os
 import math
+
 # Parse input file
 input = open(os.path.dirname(os.path.realpath(__file__)) + '/day8_input.txt')
 
@@ -43,7 +44,5 @@ for node in starting_nodes:
 
 # Given Rule 2 and the cycle sizes, we just need to calculate the least-common-multiple of the cycle sizes to find where they all will overlap for the first time
 # If Rule 2 didn't exist, we would need to calculate an offset for each node's cycle, which would be a pain...
-least_common_multiple = 1
-for cycle in cycle_sizes:
-    least_common_multiple = (least_common_multiple * cycle) // math.gcd(least_common_multiple, cycle)
+least_common_multiple = math.lcm(*cycle_sizes)
 print("The number of steps until all ghosts would reach an exit node is:", least_common_multiple)
