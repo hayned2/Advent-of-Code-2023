@@ -6,6 +6,7 @@ lines = input.readlines()
 input.close()
 
 # Create a map of the pipes and what nodes they connect to, and locate the Start node
+# There's no point tracking pipe connections if they don't connect to each other
 map = {}
 start = None
 width = len(lines[0]) - 1
@@ -13,22 +14,22 @@ height = len(lines)
 for row in range(len(lines)):
     for column in range(len(lines[row]) - 1):
 
-        if lines[row][column] == '|' and row > 0 and row < height - 1:
+        if lines[row][column] == '|' and row > 0 and row < height - 1 and lines[row - 1][column] in '|F7S' and lines[row + 1][column] in '|JLS':
             map[(row, column)] = [(row - 1, column), (row + 1, column)]
 
-        elif lines[row][column] == '-' and column > 0 and column < width - 1:
+        elif lines[row][column] == '-' and column > 0 and column < width - 1 and lines[row][column - 1] in '-FLS' and lines[row][column + 1] in '-7JS':
             map[(row, column)] = [(row, column - 1), (row, column + 1)]
 
-        elif lines[row][column] == 'L' and row > 0 and column < width - 1:
+        elif lines[row][column] == 'L' and row > 0 and column < width - 1 and lines[row - 1][column] in '|F7S' and lines[row][column + 1] in '-7JS':
             map[(row, column)] = [(row - 1, column), (row, column + 1)]
 
-        elif lines[row][column] == 'J' and row > 0 and column > 0:
+        elif lines[row][column] == 'J' and row > 0 and column > 0 and lines[row - 1][column] in '|F7S' and lines[row][column - 1] in '-FLS':
             map[(row, column)] = [(row - 1, column), (row, column - 1)]
 
-        elif lines[row][column] == '7' and column > 0 and row < height - 1:
+        elif lines[row][column] == '7' and column > 0 and row < height - 1 and lines[row][column - 1] in '-FLS' and lines[row + 1][column] in '|JLS':
             map[(row, column)] = [(row, column - 1), (row + 1, column)]   
 
-        elif lines[row][column] == 'F' and row < height - 1 and column < width - 1:
+        elif lines[row][column] == 'F' and row < height - 1 and column < width - 1 and lines[row + 1][column] in '|JLS' and lines[row][column + 1] in '-7JS':
             map[(row, column)] = [(row + 1, column), (row, column + 1)]
 
         elif lines[row][column] == 'S':
@@ -66,10 +67,7 @@ def calculate_loop(starting_node):
         # Get the connected nodes to our current one, make sure we're going in the right direction around the loop
         connected_nodes = map[current_node]
         if current_node == starting_node:
-            if connected_nodes[0] != starting_node:
-                next_node = connected_nodes[0]
-            else:
-                next_node = connected_nodes[1]
+            next_node = connected_nodes[0]
         else:
             if connected_nodes[0] != visited_nodes[-1]:
                 next_node = connected_nodes[0] 
