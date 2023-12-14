@@ -5,7 +5,7 @@ input = open(os.path.dirname(os.path.realpath(__file__)) + '/day13_input.txt')
 lines = input.readlines()
 input.close()
 
-# Helper function, if given a list of numbers, returns pair of consecutive numbers
+# Helper function, if given a list of numbers, returns pairs of consecutive numbers
 # For example, given [1, 4, 5, 6, 10] it will return [[4,5],[5,6]]
 def find_consecutive_number_pairs(values):
     pairs = []
