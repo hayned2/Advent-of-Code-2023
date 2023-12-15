@@ -1,4 +1,5 @@
 import os
+from functools import cache
 
 # Parse input file
 input = open(os.path.dirname(os.path.realpath(__file__)) + '/day14_input.txt')
@@ -18,10 +19,12 @@ for row in range(len(lines)):
             rocks.add((row, column))
 
 # Tilt will move the rocks in the given direction
+@cache
 def tilt(rocks, direction):
     
     global height, width, blocked
     rocks_after_move = set()
+    rocks = list(rocks)
 
     # Depending on the direction, the rocks will be sorted differently for movement. (Top ones move first if rolling north, for example)
     if direction == 'N':
@@ -81,7 +84,7 @@ cycle_length = None
 while cycle_tracker <= 5:
     end = False
     for direction in 'NWSE':
-        rocks = tilt(list(rocks), direction)
+        rocks = tilt(tuple(rocks), direction)
         # Answer for pt. 1
         if direction == 'N' and cycles == 0:
             weight = 0
