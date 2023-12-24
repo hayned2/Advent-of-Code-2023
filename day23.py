@@ -1,5 +1,3 @@
-# I take no credit for this solution's second part. I would not have figured this problem out on my own.
-
 import os
 from copy import deepcopy
 
